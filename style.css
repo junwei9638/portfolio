@@ -1,0 +1,117 @@
+/* Reset & Global */
+body { 
+  margin: 0; 
+  font-family: 'Inter', sans-serif', Helvetica, Arial, sans-serif; 
+  background-color: #000; /* 防止滑動時露出白底 */
+}
+
+.panel { 
+  height: 100vh; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-direction: column; 
+  padding: 40px; 
+  color: white; 
+  position: relative; 
+  overflow: hidden;
+}
+
+h1, h2 { margin: 0 0 20px 0; letter-spacing: 1px; }
+ul { list-style: none; padding: 0; }
+
+/* --- Nippon Colors Palette (Dark Mode Edition) --- */
+
+/* Hero: #3A5B52 - TETSUONANDO (鐵御納戶) - 深沈的藍綠色 */
+.hero { background: #3A5B52; }
+
+/* Skills: #2B5F75 - HANADA (縹色) - 沈穩的藍色 */
+.skills { background: #2B5F75; }
+
+/* Projects: #2E373E - AIZUMI (藍墨) - *更新* 極深灰藍色，銜接整體暗色氛圍 */
+.projects { background: #2E373E; }
+
+/* Activities: #1B315E - KONJO (紺青) - 深海藍 (作為影片底色) */
+.activities { background: #1B315E; }
+
+
+/* --- Specific Styles --- */
+
+/* Project List Styling */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.project-item {
+  color: rgba(255, 255, 255, 0.9); /*稍微調降一點白度，讓視覺柔和*/
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 6px;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* 更滑順的動畫曲線 */
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+/* Hover Effect: 適合暗色背景的微光效果 */
+.project-item:hover {
+  transform: scale(1.05);
+  color: #fff; /* Hover 時變全白 */
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05); /* 極淡的白光背景 */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* 增加立體感陰影 */
+}
+
+/* Skills List Items */
+.skills li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Activity Styling */
+.activities .bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.activities .content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.activity-links {
+  font-size: 1.3rem;
+  line-height: 2;
+}
+
+.activity-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+.activity-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+.activity-links .separator {
+  margin: 0 8px;
+  opacity: 0.5;
+}

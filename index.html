@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Resume - Designer Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <section class="panel hero" id="hero">
+    <h1 class="title">Your Name</h1>
+    <p class="subtitle">Software Engineer • C++ • Python • Linux • Networking</p>
+  </section>
+
+  <section class="panel skills" id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>C++ (STL, memory management)</li>
+      <li>Python (asyncio, automation)</li>
+      <li>Linux (system programming, bash)</li>
+      <li>Networking (TCP/IP, DNS)</li>
+      <li>DevOps (Docker, CI/CD)</li>
+    </ul>
+  </section>
+
+  <section class="panel projects" id="projects">
+    <h2>Projects</h2>
+    <div class="project-list">
+      <a href="#" class="project-item">Stack App with CI/CD Pipeline</a>
+      <a href="#" class="project-item">Linux Thread Scheduler Implementation</a>
+      <a href="#" class="project-item">Green Thread Context Switch Demo</a>
+    </div>
+  </section>
+
+  <section class="panel activities" id="activities">
+    <video id="danceVideo" class="bg-video" loop playsinline>
+      <source src="dance.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    
+    <div class="content">
+      <h2>Activities</h2>
+      <div class="activity-links">
+        <a href="capoeira.html">Capoeira</a>
+        <span class="separator">•</span>
+        <a href="dance.html">Dance</a>
+        <span class="separator">•</span>
+        <a href="music.html">Music Production</a>
+        <span class="separator">•</span>
+        <a href="video.html">Video Editing</a>
+      </div>
+      <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">(Scroll here to hear the rhythm)</p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
