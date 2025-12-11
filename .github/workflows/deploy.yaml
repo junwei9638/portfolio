@@ -1,0 +1,35 @@
+name: Deploy to AWS S3 & CloudFront
+
+on:
+  push:
+    branches:
+      - main  # 只有推送到 main 分支時才觸發
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. 把你的程式碼抓下來
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. 設定 AWS 權限
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-3 # 記得改成你的 S3 Bucket 區域 (例如東京是 ap-northeast-1)
+
+    # 3. 同步檔案到 S3 (這裡會把這層目錄的所有檔案上傳)
+    - name: Sync files to S3
+      run: |
+        aws s3 sync . s3://junwei-portfolio-web-bucket --delete --exclude ".git/*" --exclude ".github/*"
+      # 請把 your-bucket-name 改成你第一步創的 Bucket 名字
+      # --delete 代表如果 GitHub 刪了檔案，S3 也會跟著刪除
+
+    # 4. 清除 CDN 快取 (讓更新立刻生效)
+    - name: Invalidate CloudFront Cache
+      run: |
+        aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
