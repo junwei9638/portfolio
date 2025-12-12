@@ -84,6 +84,72 @@ export function initScene() {
     composer.addPass(renderScene);
     composer.addPass(bloomPass);
 
+    // -----------------------------
+    // 8. 圓形虛線放置區域
+    // -----------------------------
+    const triggerRadius = 1.0; 
+    const segments = 64;
+    const circlePoints = [];
+    const yOffset = 0.001; // 微嵌入地板
+
+    for (let i = 0; i <= segments; i++) {
+        const theta = (i / segments) * Math.PI * 2;
+        const x = Math.cos(theta) * triggerRadius;
+        const z = Math.sin(theta) * triggerRadius;
+        circlePoints.push(new THREE.Vector3(x, yOffset, z));
+    }
+
+    const circleGeo = new THREE.BufferGeometry().setFromPoints(circlePoints);
+    const circleMat = new THREE.LineDashedMaterial({
+        color: 0xffaa33,
+        dashSize: 0.05,
+        gapSize: 0.05,
+        transparent: true,
+        opacity: 0.7,
+        linewidth: 1.5
+    });
+    const circleLine = new THREE.Line(circleGeo, circleMat);
+    circleLine.computeLineDistances();
+    scene.add(circleLine);
+
+    let pulseDirection = 1;
+    function animateCircle(dt) {
+        circleLine.material.opacity += dt * 0.2 * pulseDirection;
+        if (circleLine.material.opacity > 0.9) pulseDirection = -1;
+        if (circleLine.material.opacity < 0.6) pulseDirection = 1;
+        circleLine.material.needsUpdate = true;
+    }
+
+    // -----------------------------
+    // 9. 燈光自然擺動
+    // -----------------------------
+    let swingOffset = new THREE.Vector2(0, 0);
+    let swingTarget = new THREE.Vector2(0, 0);
+    const swingMax = 0.05;
+    const decay = 0.98;
+
+    function animateLightSwing(dt) {
+        if (Math.random() < 0.01) {
+            swingTarget.x = (Math.random() - 0.5) * swingMax * 2;
+            swingTarget.y = (Math.random() - 0.5) * swingMax * 2;
+        }
+
+        swingOffset.x += (swingTarget.x - swingOffset.x) * dt * 2;
+        swingOffset.y += (swingTarget.y - swingOffset.y) * dt * 2;
+        swingOffset.multiplyScalar(decay);
+
+        mainLight.position.x = swingOffset.x;
+        mainLight.position.y = lightY + swingOffset.y;
+        bulb.position.x = swingOffset.x;
+        bulb.position.y = lightY - 0.05 + swingOffset.y;
+
+        mainLight.target.position.set(0, 0, 0);
+        mainLight.target.updateMatrixWorld();
+    }
+
+    // -----------------------------
+    // 10. Resize Event
+    // -----------------------------
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
@@ -91,5 +157,12 @@ export function initScene() {
         composer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    return { scene, camera, renderer, world, composer, controls, physicsMaterial: mat2, mainLight, bulb };
+    // -----------------------------
+    // 11. Return 所有物件
+    // -----------------------------
+    return { 
+        scene, camera, renderer, world, composer, controls, 
+        physicsMaterial: mat2, 
+        circleLine, animateCircle, mainLight, bulb, animateLightSwing 
+    };
 }
