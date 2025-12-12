@@ -91,5 +91,5 @@ export function initScene() {
         composer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    return { scene, camera, renderer, world, composer, controls, physicsMaterial: mat2 };
+    return { scene, camera, renderer, world, composer, controls, physicsMaterial: mat2, mainLight, bulb };
 }

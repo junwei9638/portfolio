@@ -5,16 +5,14 @@
    ========================================= */
 body { 
   margin: 0; 
-  font-family: 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
-  
-  /* ★ 修改 1: 背景改為純黑 */
-  background-color: #000; 
-  
+  font-family: Georgia, 'Times New Roman', serif;
+  background-color: #000000; 
   overflow: hidden; 
 }
 
+/* 確保所有標題繼承字體設定 */
 h1, h2, h3, p, a, li, span, div { 
-  font-family: 'Bodoni Moda', serif;
+  font-family: Georgia, 'Times New Roman', serif;
 }
 
 ul { list-style: none; padding: 0; }
@@ -36,13 +34,12 @@ ul { list-style: none; padding: 0; }
 }
 
 h2 {
-  font-size: 3rem;
+  font-size: 3rem; 
   margin-bottom: 2rem;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.9);
-  font-style: italic;
 }
 
 /* =========================================
@@ -52,11 +49,8 @@ h2 {
   position: relative;
   height: 100vh;
   width: 100%;
-  
-  /* ★ 修改 2: Hero 背景改為純黑 */
-  background: #000; 
-  
-  overflow: hidden; 
+  background: #000000; 
+  overflow: hidden;
   padding: 0;
   display: block;
 }
@@ -68,8 +62,7 @@ h2 {
   left: 0;
   width: 100%;
   height: 150px;
-  /* ★ 修改 3: 漸層遮罩底部也改為純黑 */
-  background: linear-gradient(to bottom, transparent, #000);
+  background: linear-gradient(to bottom, transparent, #000000);
   pointer-events: none;
   z-index: 5;
 }
@@ -98,7 +91,7 @@ h2 {
 }
 
 .title {
-  font-size: 5.5rem;
+  font-size: 5.5rem; 
   font-weight: 700;  
   margin: 0 0 0.5rem 0;
   color: rgba(255, 255, 255, 0.95);
@@ -107,18 +100,9 @@ h2 {
   font-style: normal;
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.3em; 
-  margin-top: 10px;
-  font-style: italic;
-}
 
 .hint-text {
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: 0.9rem;
   font-weight: 400;
   color: #d4c5b0;
@@ -136,13 +120,11 @@ h2 {
 /* =========================================
    5. Skills Section
    ========================================= */
-/* ★ 修改 4: 背景改為純黑 (原本是 #2B5F75) */
-.skills { background: #000; }
-
+.skills { background: #000000; }
 .skills ul { text-align: center; }
 .skills li { 
   margin-bottom: 15px; 
-  font-size: 1.5rem;
+  font-size: 1.5rem; 
   font-weight: 400;
   opacity: 0.9; 
   letter-spacing: 0.5px;
@@ -152,9 +134,7 @@ h2 {
 /* =========================================
    6. Projects Section
    ========================================= */
-/* ★ 修改 5: 背景改為純黑 (原本是 #2E373E) */
-.projects { background: #000; }
-
+.projects { background: #000000; }
 .project-list { 
   display: flex; 
   flex-direction: column; 
@@ -170,15 +150,13 @@ h2 {
   text-align: center;
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 1.4rem; 
   font-weight: 500;
   padding: 25px 30px;
-  border-radius: 4px;
-  
+  border-radius: 4px; 
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
-  
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   letter-spacing: 1px;
 }
@@ -192,10 +170,9 @@ h2 {
 }
 
 /* =========================================
-   7. Activities Section
+   7. Activities Section (Elegant Style)
    ========================================= */
-/* ★ 修改 6: 背景改為純黑 (原本是 #1B315E) */
-.activities { background: #000; overflow: hidden; }
+.activities { background: #000000; overflow: hidden; }
 
 .activities .bg-video {
   position: absolute;
@@ -217,7 +194,7 @@ h2 {
 }
 
 .activities h2 {
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 4px;
   margin-bottom: 40px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.5);
@@ -232,10 +209,10 @@ h2 {
 }
 
 .activity-links a {
-  font-family: 'Bodoni Moda', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
-  font-size: 2.8rem;
-  font-weight: 600;
+  font-size: 2rem; 
+  font-weight: 300;
   color: rgba(255, 255, 255, 0.9); 
   text-decoration: none; 
   padding: 5px 10px; 
@@ -262,6 +239,7 @@ h2 {
   text-transform: uppercase;
 }
 
+/* RWD */
 @media (max-width: 768px) {
   .title { font-size: 3.5rem; }
   .subtitle { font-size: 0.9rem; }

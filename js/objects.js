@@ -20,19 +20,20 @@ export function initObjects(scene, world, camera, renderer, physicsMaterial) {
     // 2. Create Physics Text (Linking to Sections)
     const fontLoader = new FontLoader();
     
-    fontLoader.load('https://unpkg.com/three@0.155.0/examples/fonts/droid/droid_serif_bold.typeface.json', font => {
-        
-        // 定義對應關係：文字 -> HTML ID
+    fontLoader.load(
+    'https://threejs.org/examples/fonts/droid/droid_sans_bold.typeface.json',
+    font => {
         const sections = [
-            { text: 'SKILLS',     id: 'skills',     pos: { x: -2.5, y: 3, z: 0.5 }, color: 0xaaaaaa }, 
-            { text: 'PROJECTS',   id: 'projects',   pos: { x: 2.5, y: 3, z: 0.5 },  color: 0xaaaaaa }, 
-            { text: 'ACTIVITIES', id: 'activities', pos: { x: 0,   y: 3, z: 2.5 },  color: 0xaaaaaa }
+        { text: 'SKILLS',     id: 'skills',     pos: { x: -2.5, y: 3, z: 0.5 }, color: 0xaaaaaa },
+        { text: 'PROJECTS',   id: 'projects',   pos: { x: 2.5, y: 3, z: 0.5 },  color: 0xaaaaaa },
+        { text: 'ACTIVITIES', id: 'activities', pos: { x: 0,   y: 3, z: 2.5 },  color: 0xaaaaaa }
         ];
 
         sections.forEach(sec => {
-            createPhysicsText(font, sec.text, new THREE.Vector3(sec.pos.x, sec.pos.y, sec.pos.z), sec.color, sec.id);
+        createPhysicsText(font, sec.text, new THREE.Vector3(sec.pos.x, sec.pos.y, sec.pos.z), sec.color, sec.id);
         });
-    });
+    }
+    );
 
     function createPhysicsText(font, text, pos, color, domID) {
         // Visual
