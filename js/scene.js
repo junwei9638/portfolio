@@ -14,43 +14,43 @@ export function initScene() {
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    
+
     const container = document.getElementById('canvas-container');
-    if(container) container.appendChild(renderer.domElement);
+    if (container) container.appendChild(renderer.domElement);
 
     // 2. Scene
     const scene = new THREE.Scene();
-    
+
     // 3. Physics World
     const world = new CANNON.World();
-    world.gravity.set(0, -5, 0);
+    world.gravity.set(0, -8, 0);
     world.allowSleep = true;
 
     const mat1 = new CANNON.Material();
-    const mat2 = new CANNON.Material(); 
+    const mat2 = new CANNON.Material();
     const contactMat = new CANNON.ContactMaterial(mat1, mat2, { friction: 0.5, restitution: 0.1 });
     world.addContactMaterial(contactMat);
 
     // 4. Camera
     const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
-    camera.position.set(5, 4, 5); 
-    
+    camera.position.set(5, 4, 5);
+
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.target.set(0, 1, 0);
     controls.enableDamping = true;
-    controls.enabled = false; 
+    controls.enabled = false;
 
     // 5. Floor (Visual & Physics)
     const floorGeo = new THREE.PlaneGeometry(30, 30);
-    
+
     // ★ 修改: 地板顏色改為純黑 (0x000000)，與網頁背景融合
-    const floorMat = new THREE.MeshPhysicalMaterial({ 
-        color: 0x000000, 
-        roughness: 0.5, 
-        metalness: 0.1, 
+    const floorMat = new THREE.MeshPhysicalMaterial({
+        color: 0x000000,
+        roughness: 0.5,
+        metalness: 0.1,
         reflectivity: 0.3
     });
-    
+
     const floorMesh = new THREE.Mesh(floorGeo, floorMat);
     floorMesh.rotation.x = -Math.PI / 2;
     floorMesh.receiveShadow = true;
@@ -87,7 +87,7 @@ export function initScene() {
     // -----------------------------
     // 8. 圓形虛線放置區域
     // -----------------------------
-    const triggerRadius = 1.0; 
+    const triggerRadius = 1.0;
     const segments = 64;
     const circlePoints = [];
     const yOffset = 0.001; // 微嵌入地板
@@ -160,9 +160,9 @@ export function initScene() {
     // -----------------------------
     // 11. Return 所有物件
     // -----------------------------
-    return { 
-        scene, camera, renderer, world, composer, controls, 
-        physicsMaterial: mat2, 
-        circleLine, animateCircle, mainLight, bulb, animateLightSwing 
+    return {
+        scene, camera, renderer, world, composer, controls,
+        physicsMaterial: mat2,
+        circleLine, animateCircle, mainLight, bulb, animateLightSwing
     };
 }

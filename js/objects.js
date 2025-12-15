@@ -19,20 +19,20 @@ export function initObjects(scene, world, camera, renderer, physicsMaterial) {
 
     // 2. Create Physics Text (Linking to Sections)
     const fontLoader = new FontLoader();
-    
-    fontLoader.load(
-    'https://threejs.org/examples/fonts/droid/droid_sans_bold.typeface.json',
-    font => {
-        const sections = [
-        { text: 'SKILLS',     id: 'skills',     pos: { x: -2.5, y: 3, z: 0.5 }, color: 0xaaaaaa },
-        { text: 'PROJECTS',   id: 'projects',   pos: { x: 2.5, y: 3, z: 0.5 },  color: 0xaaaaaa },
-        { text: 'ACTIVITIES', id: 'activities', pos: { x: 0,   y: 3, z: 2.5 },  color: 0xaaaaaa }
-        ];
 
-        sections.forEach(sec => {
-        createPhysicsText(font, sec.text, new THREE.Vector3(sec.pos.x, sec.pos.y, sec.pos.z), sec.color, sec.id);
-        });
-    }
+    fontLoader.load(
+        'https://threejs.org/examples/fonts/droid/droid_sans_bold.typeface.json',
+        font => {
+            const sections = [
+                { text: 'SKILLS', id: 'skills', pos: { x: -0.2, y: 6.0, z: 2 }, color: 0xaaaaaa },
+                { text: 'PROJECTS', id: 'projects', pos: { x: 2, y: 6.0, z: 1 }, color: 0xaaaaaa },
+                { text: 'ACTIVITIES', id: 'activities', pos: { x: 1.5, y: 7.0, z: 2 }, color: 0xaaaaaa }
+            ];
+
+            sections.forEach(sec => {
+                createPhysicsText(font, sec.text, new THREE.Vector3(sec.pos.x, sec.pos.y, sec.pos.z), sec.color, sec.id);
+            });
+        }
     );
 
     function createPhysicsText(font, text, pos, color, domID) {
@@ -55,13 +55,13 @@ export function initObjects(scene, world, camera, renderer, physicsMaterial) {
             material: physicsMaterial
         });
         body.position.copy(pos);
-        // 給一點隨機旋轉
-        body.quaternion.setFromEuler((Math.random()-0.5)*0.5, (Math.random()-0.5)*0.5, (Math.random()-0.5)*0.5);
+        // Lay flat on ground (-90 deg X) with SLIGHT random rotation (Z)
+        body.quaternion.setFromEuler(-Math.PI / 2, 0, (Math.random() - 0.5) * 1.0);
         body.linearDamping = 0.9;
         body.angularDamping = 0.95;
 
         world.addBody(body);
-        
+
         // 儲存 domID 供後續使用
         objectsToUpdate.push({ mesh, body, domID, isInside: false });
     }
@@ -77,11 +77,11 @@ function setupDragControls(camera, renderer, world, objectsToUpdate) {
     const mouse = new THREE.Vector2();
     const dragPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
     const intersectPoint = new THREE.Vector3();
-    
+
     const mouseBody = new CANNON.Body({ type: CANNON.Body.KINEMATIC, shape: new CANNON.Sphere(0.1) });
     mouseBody.collisionFilterGroup = 0;
     world.addBody(mouseBody);
-    
+
     let joint = null;
     let dragging = false;
 
@@ -100,7 +100,7 @@ function setupDragControls(camera, renderer, world, objectsToUpdate) {
     window.addEventListener('pointerdown', e => {
         raycaster.setFromCamera(mouse, camera);
         const intersects = objectsToUpdate.map(o => o.mesh).filter(m => raycaster.intersectObject(m).length > 0);
-        
+
         if (intersects.length > 0) {
             const target = objectsToUpdate.find(o => o.mesh === intersects[0]);
             dragging = true;
