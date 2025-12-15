@@ -2,24 +2,27 @@ import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
 import { initScene } from './js/scene.js';
 import { initObjects } from './js/objects.js';
+import { initParticles } from './js/particles.js';
 
 // -----------------------------
 // 初始化場景與物件
 // -----------------------------
-const { 
-    scene, 
-    camera, 
-    renderer, 
-    world, 
-    composer, 
-    controls, 
-    physicsMaterial, 
-    circleLine, 
-    animateCircle, 
-    mainLight, 
-    bulb, 
-    animateLightSwing 
+const {
+    scene,
+    camera,
+    renderer,
+    world,
+    composer,
+    controls,
+    physicsMaterial,
+    circleLine,
+    animateCircle,
+    mainLight,
+    bulb,
+    animateLightSwing
 } = initScene();
+
+const particles = initParticles(scene);
 
 const objectsToUpdate = initObjects(scene, world, camera, renderer, physicsMaterial);
 
@@ -38,14 +41,17 @@ document.body.style.overflowY = 'auto';
 function checkTriggers() {
     objectsToUpdate.forEach(obj => {
         const distance = obj.body.position.distanceTo(centerPosition);
-        
+
         if (distance < triggerRadius) {
             if (!obj.isInside) {
                 obj.isInside = true;
-                
+
                 const section = document.getElementById(obj.domID);
                 if (section) {
                     console.log(`Navigating to ${obj.domID}`);
+
+                    // Trigger Particle Flare
+                    particles.triggerFlare();
 
                     gsap.to(window, {
                         scrollTo: { y: section, offsetY: 0 },
@@ -60,6 +66,7 @@ function checkTriggers() {
         } else {
             if (distance > triggerRadius + 0.5) {
                 obj.isInside = false;
+                if (particles.resetFlare) particles.resetFlare();
             }
         }
     });
@@ -91,6 +98,9 @@ function animate() {
 
     // 燈光自然擺動
     animateLightSwing(dt);
+
+    // Update Particles
+    particles.update(dt);
 
     // 更新控制器 & 渲染
     controls.update();
