@@ -43,7 +43,7 @@ export function initScene() {
     // 5. Floor (Visual & Physics)
     const floorGeo = new THREE.PlaneGeometry(30, 30);
 
-    // ★ 修改: 地板顏色改為純黑 (0x000000)，與網頁背景融合
+    // 地板顏色改為純黑 (0x000000)
     const floorMat = new THREE.MeshPhysicalMaterial({
         color: 0x000000,
         roughness: 0.5,
