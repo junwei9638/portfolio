@@ -31,13 +31,14 @@ This project is deployed to **[junwei-li.com](https://junwei-li.com)** using a f
 
 ## 📂 Project Structure
 *   `index.html`: Main entry point.
-*   `style.css`: Global styles and overlays.
-*   `main.js`: Main 3D loop and logic integration.
+*   `css/`
+    *   `main/style.css`: Global styles.
 *   `js/`
-    *   `scene.js`: Setup for Renderer, Camera, Lights, and Physics World.
-    *   `objects.js`: Logic for 3D physics objects (text blocks, drag controls).
-    *   `particles.js`: Custom particle system logic.
-*   `models/`: 3D assets (e.g., lamp model).
+    *   `main/`: Core 3D logic (main event loop, scene setup, physics objects).
+*   `media/`: 
+    *   `main/`: 3D assets (e.g., lamp model).
+    *   `activities/`: Videos and images for activity pages.
+*   `html/`: Feature pages (Activities, Skills, Projects).
 
 ## ✨ Credits
 Designed and built by Junwei Li.
