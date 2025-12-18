@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
-import { initScene } from './js/scene.js';
-import { initObjects } from './js/objects.js';
-import { initParticles } from './js/particles.js';
+import { initScene } from './scene.js';
+import { initObjects } from './objects.js';
+import { initParticles } from './particles.js';
 
 // -----------------------------
 // 初始化場景與物件

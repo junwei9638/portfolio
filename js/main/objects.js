@@ -9,7 +9,7 @@ export function initObjects(scene, world, camera, renderer, physicsMaterial) {
 
     // 1. Load Lamp Model
     const gltfLoader = new GLTFLoader();
-    gltfLoader.load('./models/lamp.glb', gltf => {
+    gltfLoader.load('../../media/main/lamp.glb', gltf => {
         const lampRoot = gltf.scene;
         lampRoot.traverse(c => { if (c.isMesh) { c.castShadow = true; c.receiveShadow = true; } });
         lampRoot.position.set(0.02, 1, 0.2);
