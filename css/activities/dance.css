@@ -1,0 +1,240 @@
+/* Fonts */
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Georgia, 'Times New Roman', serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px;
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 3.5rem;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.back-link {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.2rem;
+    transition: color 0.3s, opacity 0.3s;
+    opacity: 1;
+}
+
+.back-link:hover {
+    color: white;
+}
+
+.back-link.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* --- Hierarchical Timeline --- */
+
+.timeline {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+    margin-left: 20px;
+}
+
+/* Main Vertical Line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 6px;
+    /* Aligned with 20px circles */
+    width: 2px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Year Marker (Big Node) */
+.year-marker {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.year-marker:first-child {
+    margin-top: 0;
+}
+
+.year-circle {
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    position: relative;
+    z-index: 2;
+    margin-right: 20px;
+}
+
+.year-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Event Item (Month + Details) */
+.event-item {
+    position: relative;
+    padding-left: 40px;
+    /* 20px circle + 20px margin */
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Month Dot (Small Node on the line) */
+.month-dot {
+    position: absolute;
+    left: 3px;
+    /* Centers it on the 2px line (15px left + 1px center?? No. 15px is line start. 32px circle center is 16px. Line is at 15px.
+                   So center is 16px. Dot is 8px. Left should be 16 - 4 = 12px.
+                   Let's adjust line to left: 15px.
+                   Year Circle left: 0px. width 32px. Center is 16px.
+                   Line left: 15px. Width 2px. Center is 16px. Correct.
+                   Month Dot (8px): Left should be 12px. */
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background: #aaa;
+    border-radius: 50%;
+    z-index: 2;
+    transition: background 0.3s;
+}
+
+.event-item:hover .month-dot {
+    background: #fff;
+    box-shadow: 0 0 8px #fff;
+}
+
+.month-text {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.month-text+.location::before {
+    content: "/";
+    margin: 0 8px;
+    color: #555;
+    font-style: normal;
+}
+
+.location {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 8px;
+    font-style: italic;
+    display: inline-block;
+}
+
+.event-content {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 3px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s,
+        background 0.2s;
+}
+
+.event-item:hover .event-content {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: #fff;
+}
+
+.battle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.team {
+    font-size: 1rem;
+    color: #a0c4ff;
+    /* Light blue accent for Team */
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+
+
+.rank {
+    font-size: 1rem;
+    color: #d4c5b0;
+}
+
+/* Animation Delays */
+.event-item:nth-of-type(1) {
+    animation-delay: 0.2s;
+}
+
+.event-item:nth-of-type(2) {
+    animation-delay: 0.4s;
+}
+
+.event-item:nth-of-type(3) {
+    animation-delay: 0.6s;
+}
+
+.event-item:nth-of-type(4) {
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Collapsible Years */
+.year-events {
+    max-height: 2000px;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    opacity: 1;
+}
+
+.year-group.collapsed .year-events {
+    max-height: 0;
+    opacity: 0;
+}
+
+.year-marker {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.year-marker:hover .year-circle {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
