@@ -135,38 +135,128 @@ h2 {
    6. Projects Section
    ========================================= */
 .projects { background: #000000; }
+/* Carousel Container */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px; /* Limit width */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
 .project-list { 
   display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  gap: 20px; 
+  flex-direction: row; 
+  overflow-x: auto; 
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 30px; 
   width: 100%;
-  max-width: 700px;
+  padding: 40px 10px; /* Space for hover effects */
+  
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.project-list::-webkit-scrollbar {
+  display: none;
 }
 
 .project-item {
-  display: block;
-  width: 100%;
+  /* Show exactly 3 items: (100% - 2 * 30px gap) / 3 */
+  flex: 0 0 calc((100% - 60px) / 3);
+  min-width: 300px; /* Fallback/minimum size */
+  height: 400px;
+  scroll-snap-align: start;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  
   color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
-  font-size: 1.4rem; 
-  font-weight: 500;
-  padding: 25px 30px;
-  border-radius: 4px; 
-  background: rgba(255, 255, 255, 0.03);
+  cursor: default;
+  padding: 30px;
+  border-radius: 12px; 
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Navigation Buttons */
+.nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  z-index: 20;
+  position: absolute;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.nav-btn.prev { left: -70px; }
+.nav-btn.next { right: -70px; }
+
+/* Responsive Adjustments */
+@media (max-width: 1100px) {
+  .nav-btn { display: none; } /* Hide buttons on smaller screens, allow swipe */
+  .project-item { flex: 0 0 300px; } /* Fixed width on small screens */
+}
+
+.project-list::-webkit-scrollbar {
+  display: none;
+}
+
+.project-item {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 380px;
+  scroll-snap-align: center;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically too? User said 'align to middle' */
+  align-items: center; /* Center align text inside card */
+  text-align: center;
+  
+  color: rgba(255, 255, 255, 0.9);
+  cursor: default; /* Unclickable */
+  padding: 30px;
+  border-radius: 12px; 
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card Hover Effect */
 .project-item:hover {
-  transform: translateY(-5px);
-  color: #fff;
+  transform: translateY(-10px) scale(1.02);
   background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 /* =========================================

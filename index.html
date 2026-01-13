@@ -44,8 +44,8 @@
     <div class="skills-wrapper" style="max-width: 1000px; width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; text-align: left; padding: 0 20px;">
       
       <div class="skill-category">
-        <h3 style="font-size: 1.5rem; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; color: #fff;">Programming Languages</h3>
-        <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.8);">Python, C++/C, Java, C#</p>
+        <h3 style="font-size: 1.5rem; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; color: #fff;">Coding Languages</h3>
+        <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.8);">Python, C/C++, Java, C#, JavaScript, TypeScript</p>
       </div>
 
       <div class="skill-category">
@@ -78,52 +78,71 @@
 
   <section class="panel projects" id="projects">
     <h2>Projects</h2>
-    <div class="project-list">
+    <div class="carousel-container">
+      <button class="nav-btn prev">&#10094;</button>
       
-      <!-- Project 1 -->
-      <a href="#" class="project-item">
-        <div style="width: 100%;">
-          <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">Scheme Interpreter</h3>
-          <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">C++</span>
-          <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
-            A REPL-based Scheme interpreter built from scratch. Features lexical analysis, parsing, recursive evaluation, and custom error handling.
-          </p>
-        </div>
-      </a>
+      <div class="project-list" id="projectList">
 
-      <!-- Project 2 -->
-      <a href="#" class="project-item">
-        <div style="width: 100%;">
-          <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">OBB Vehicle Detection</h3>
-          <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">Python, PyTorch, YOLOv7</span>
-          <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
-            Oriented bounding box detection for aerial imagery. Optimized YOLOv7 ELAN backbone reducing parameters by 13% while maintaining 96.4% accuracy.
-          </p>
+        <!-- Project 1 -->
+        <div class="project-item">
+          <div style="width: 100%;">
+            <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">Threads LLM Trader</h3>
+            <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">Python, Playwright, Gemini API</span>
+            <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
+              Automated system crawling Threads posts. Uses Gemini 1.5 Flash for semantic signal analysis and FinMind for real-time trade simulation.
+            </p>
+          </div>
         </div>
-      </a>
 
-      <!-- Project 3 -->
-      <a href="#" class="project-item">
-        <div style="width: 100%;">
-          <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">AI Object Recognition</h3>
-          <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">HTML, JS, OpenCV, Azure</span>
-          <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
-            Real-time web app for object recognition using OpenCV.js/KNN. Supports custom label training via webcam. Secured with SSL on Azure.
-          </p>
+        <!-- Project 2 -->
+        <div class="project-item">
+          <div style="width: 100%;">
+            <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">OBB Vehicle Detection</h3>
+            <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">Python, PyTorch, YOLOv7</span>
+            <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
+              Oriented bounding box detection for aerial imagery. Optimized YOLOv7 ELAN backbone reducing parameters by 13% while maintaining 96.4% accuracy.
+            </p>
+          </div>
         </div>
-      </a>
 
-      <!-- Project 4 -->
-      <a href="#" class="project-item">
-        <div style="width: 100%;">
-          <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">x86 Lexical Analyzer</h3>
-          <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">C++</span>
-          <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
-             Lexer/tokenizer for x86 assembly. Parses registers, symbols, and instructions using multi-table hashing architecture for efficient compilation.
-          </p>
+        <!-- Project 3 -->
+        <div class="project-item">
+          <div style="width: 100%;">
+            <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">AI Object Recognition</h3>
+            <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">HTML, JS, OpenCV, Azure</span>
+            <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
+              Real-time web app for object recognition using OpenCV.js/KNN. Supports custom label training via webcam. Secured with SSL on Azure.
+            </p>
+          </div>
         </div>
-      </a>
+        
+        <!-- Project 4 -->
+        <div class="project-item">
+          <div style="width: 100%;">
+            <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">Scheme Interpreter</h3>
+            <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">C++</span>
+            <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
+              A REPL-based Scheme interpreter built from scratch. Features lexical analysis, parsing, recursive evaluation, and custom error handling.
+            </p>
+          </div>
+        </div>
 
+        <!-- Project 5 -->
+        <div class="project-item">
+          <div style="width: 100%;">
+            <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">x86 Lexical Analyzer</h3>
+            <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">C++</span>
+            <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
+               Lexer/tokenizer for x86 assembly. Parses registers, symbols, and instructions using multi-table hashing architecture for efficient compilation.
+            </p>
+          </div>
+        </div>
+
+
+
+      </div>
+      
+      <button class="nav-btn next">&#10095;</button>
     </div>
   </section>
 
@@ -147,38 +166,6 @@
   </section>
 
   <script type="module" src="./js/main/main.js"></script>
-
-  <script>
-    gsap.registerPlugin(ScrollTrigger);
-
-    // 下方 Panel 的進場動畫
-    const panels = document.querySelectorAll('.panel:not(.hero)');
-    panels.forEach(panel => {
-      gsap.from(panel, {
-        opacity: 0,
-        y: 80,
-        duration: 1,
-        scrollTrigger: {
-          trigger: panel,
-          start: "top 85%",
-        }
-      });
-    });
-
-    // 影片播放控制
-    const video = document.getElementById('danceVideo');
-    if (video) {
-      ScrollTrigger.create({
-        trigger: "#activities",
-        start: "top 60%",
-        end: "bottom 40%",
-        onEnter: () => { video.muted = false; video.play().catch(() => { }); },
-        onEnterBack: () => { video.muted = false; video.play().catch(() => { }); },
-        onLeave: () => video.pause(),
-        onLeaveBack: () => video.pause(),
-      });
-    }
-  </script>
 </body>
 
 </html>

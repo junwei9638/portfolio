@@ -109,3 +109,69 @@ function animate() {
 
 // 啟動動畫循環
 animate();
+
+
+// =========================================
+// UI Logic & Animations (Refactored)
+// =========================================
+
+// Ensure GSAP ScrollTrigger is registered
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Panel Animations
+    const panels = document.querySelectorAll('.panel:not(.hero)');
+    panels.forEach(panel => {
+      gsap.from(panel, {
+        opacity: 0,
+        y: 80,
+        duration: 1,
+        scrollTrigger: {
+          trigger: panel,
+          start: "top 85%",
+        }
+      });
+    });
+
+    // Video Playback Control
+    const video = document.getElementById('danceVideo');
+    if (video) {
+        ScrollTrigger.create({
+            trigger: "#activities",
+            start: "top 60%",
+            end: "bottom 40%",
+            onEnter: () => { video.muted = false; video.play().catch(() => { }); },
+            onEnterBack: () => { video.muted = false; video.play().catch(() => { }); },
+            onLeave: () => video.pause(),
+            onLeaveBack: () => video.pause(),
+        });
+    }
+}
+
+// Carousel Logic
+const carouselContainer = document.getElementById('projectList');
+if (carouselContainer) {
+    // Helper: item width + gap
+    function getItemWidth() {
+        const item = carouselContainer.querySelector('.project-item');
+        return item ? item.offsetWidth + 30 : 0; // 30px gap
+    }
+
+    // Navigation Buttons
+    const nextBtn = document.querySelector('.nav-btn.next');
+    const prevBtn = document.querySelector('.nav-btn.prev');
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const itemWidth = getItemWidth();
+            carouselContainer.scrollBy({ left: itemWidth, behavior: 'smooth' });
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            const itemWidth = getItemWidth();
+            carouselContainer.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+        });
+    }
+}
