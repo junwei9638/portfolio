@@ -41,19 +41,89 @@
 
   <section class="panel skills" id="skills">
     <h2>Skills</h2>
-    <ul>
-      <li>C++</li>
-      <li>Python</li>
-      <li>Deep Learning</li>
-    </ul>
+    <div class="skills-wrapper" style="max-width: 1000px; width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; text-align: left; padding: 0 20px;">
+      
+      <div class="skill-category">
+        <h3 style="font-size: 1.5rem; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; color: #fff;">Programming Languages</h3>
+        <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.8);">Python, C++/C, Java, C#</p>
+      </div>
+
+      <div class="skill-category">
+        <h3 style="font-size: 1.5rem; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; color: #fff;">Frameworks & Libraries</h3>
+        <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.8);">YOLO, OpenCV, PyTorch, PyQt, PySide2, ASP.NET MVC, MFC, SECS</p>
+      </div>
+
+      <div class="skill-category">
+        <h3 style="font-size: 1.5rem; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; color: #fff;">Tools</h3>
+        <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.8);">Git, Docker, AWS, Azure, SQL Server, IIS, Jetson Nano, Arduino, Fish Shell, NeoVim</p>
+      </div>
+      
+      <div class="skill-category">
+        <h3 style="font-size: 1.5rem; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; color: #fff;">Operating Systems</h3>
+        <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.8);">Windows, Linux, MacOS</p>
+      </div>
+
+      <div class="skill-category">
+        <h3 style="font-size: 1.5rem; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; color: #fff;">Certifications</h3>
+        <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.8);">AWS Academy Graduate – AWS Cloud Foundations</p>
+      </div>
+
+      <div class="skill-category">
+        <h3 style="font-size: 1.5rem; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; color: #fff;">Languages</h3>
+        <p style="font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.8);">Mandarin (Native), English (TOEIC 850)</p>
+      </div>
+
+    </div>
   </section>
 
   <section class="panel projects" id="projects">
     <h2>Projects</h2>
     <div class="project-list">
-      <a href="#" class="project-item">Stack App with CI/CD Pipeline</a>
-      <a href="#" class="project-item">Linux Thread Scheduler Implementation</a>
-      <a href="#" class="project-item">Green Thread Context Switch Demo</a>
+      
+      <!-- Project 1 -->
+      <a href="#" class="project-item">
+        <div style="width: 100%;">
+          <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">Scheme Interpreter</h3>
+          <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">C++</span>
+          <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
+            A REPL-based Scheme interpreter built from scratch. Features lexical analysis, parsing, recursive evaluation, and custom error handling.
+          </p>
+        </div>
+      </a>
+
+      <!-- Project 2 -->
+      <a href="#" class="project-item">
+        <div style="width: 100%;">
+          <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">OBB Vehicle Detection</h3>
+          <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">Python, PyTorch, YOLOv7</span>
+          <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
+            Oriented bounding box detection for aerial imagery. Optimized YOLOv7 ELAN backbone reducing parameters by 13% while maintaining 96.4% accuracy.
+          </p>
+        </div>
+      </a>
+
+      <!-- Project 3 -->
+      <a href="#" class="project-item">
+        <div style="width: 100%;">
+          <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">AI Object Recognition</h3>
+          <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">HTML, JS, OpenCV, Azure</span>
+          <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
+            Real-time web app for object recognition using OpenCV.js/KNN. Supports custom label training via webcam. Secured with SSL on Azure.
+          </p>
+        </div>
+      </a>
+
+      <!-- Project 4 -->
+      <a href="#" class="project-item">
+        <div style="width: 100%;">
+          <h3 style="font-size: 1.4rem; margin: 0 0 10px 0; color: #fff; font-weight: 600;">x86 Lexical Analyzer</h3>
+          <span style="font-size: 0.9rem; color: #aaa; display: block; margin-bottom: 20px;">C++</span>
+          <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.8); margin: 0;">
+             Lexer/tokenizer for x86 assembly. Parses registers, symbols, and instructions using multi-table hashing architecture for efficient compilation.
+          </p>
+        </div>
+      </a>
+
     </div>
   </section>
 
