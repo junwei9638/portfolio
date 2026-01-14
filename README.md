@@ -31,14 +31,12 @@ This project is deployed to **[junwei-li.com](https://junwei-li.com)** using a f
 
 ## 📂 Project Structure
 *   `index.html`: Main entry point.
-*   `css/`
-    *   `main/style.css`: Global styles.
-*   `js/`
-    *   `main/`: Core 3D logic (main event loop, scene setup, physics objects).
+*   `css/`: Stylesheets (`style.css`, `dance.css`).
+*   `js/`: JavaScript logic (`main.js`, `scene.js`, `objects.js`, `particles.js`, `dance.js`).
+*   `html/`: Sub-pages (`dance.html`).
 *   `media/`: 
     *   `main/`: 3D assets (e.g., lamp model).
-    *   `activities/`: Videos and images for activity pages.
-*   `html/`: Feature pages (Activities, Skills, Projects).
+    *   `activities/`: Videos and images using in activity pages.
 
 ## ✨ Credits
 Designed and built by Junwei Li.
