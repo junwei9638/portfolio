@@ -1,35 +1,58 @@
-name: Deploy to AWS S3 & CloudFront
+name: CI/CD for Static Website
 
 on:
   push:
     branches:
-      - main  # 只有推送到 main 分支時才觸發
+      - main  # 只有推 main 時觸發
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  deploy:
+  ci-cd:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. 把你的程式碼抓下來
+    # 1️⃣ 取得程式碼
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2. 設定 AWS 權限
+    # 2️⃣ 安裝 Node.js（做 lint / build 用）
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    # 3️⃣ 安裝 lint 工具
+    - name: Install linters
+      run: |
+        npm install --save-dev eslint htmlhint stylelint
+
+    # 4️⃣ JS lint
+    - name: Run ESLint
+      run: npx eslint "**/*.js" || echo "⚠️ ESLint warnings/errors found"
+
+    # 5️⃣ HTML lint
+    - name: Run HTMLHint
+      run: npx htmlhint "**/*.html" || echo "⚠️ HTMLHint warnings/errors found"
+
+    # 6️⃣ CSS lint (可選)
+    - name: Run Stylelint
+      run: npx stylelint "**/*.css" || echo "⚠️ Stylelint warnings/errors found"
+
+    # 7️⃣ 同步到 AWS S3
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-northeast-3 # 記得改成你的 S3 Bucket 區域 (例如東京是 ap-northeast-1)
+        aws-region: ap-northeast-3
 
-    # 3. 同步檔案到 S3 (這裡會把這層目錄的所有檔案上傳)
     - name: Sync files to S3
       run: |
         aws s3 sync . s3://junwei-portfolio-web-bucket --delete --exclude ".git/*" --exclude ".github/*"
-      # 請把 your-bucket-name 改成你第一步創的 Bucket 名字
-      # --delete 代表如果 GitHub 刪了檔案，S3 也會跟著刪除
 
-    # 4. 清除 CDN 快取 (讓更新立刻生效)
+    # 8️⃣ 清除 CloudFront 快取
     - name: Invalidate CloudFront Cache
       run: |
         aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
